@@ -32,11 +32,47 @@ class ViewController: UIViewController {
 		}
 		
 		showAnimation()
+		func parseCars() {
+			let source = try? String.init(contentsOfFile: "/Users/ivanvasilevich/Downloads/norms_2018-02-24.txt")
+			var element = source!.components(separatedBy: "\r\n").last!
+			for _ in 0..<4 {
+				element = element.replacingOccurrences(of: "  ", with: " ")
+			}
+			let elementsOfCar = element.components(separatedBy: " ")
+			let articul = elementsOfCar[1]
+			let position = elementsOfCar[2]
+			let name = elementsOfCar[3]
+			
+			print(name, articul, position)
+			//try
+			//documents dir
+		}
+//		addCar()
+		parseCars()
 	}
 	
 	func addWatch() {
 		let myWathch = PFObject(className: "Watch")
 		print("watch created")
+		myWathch["name"] = "Ivan's casio watch"
+		myWathch["price"] = 599
+		myWathch["size"] = 12
+		print("watch filled with data")
+		myWathch.saveEventually { (success, error) in
+			if success {
+				print("successfuly saved watch")
+			}
+			else {
+				print(error!)
+			}
+		}
+		
+		print("Ivan Vasilevich")
+	}
+	
+	func addCar() {
+		let myWathch = PFObject(className: "Car")
+		
 		myWathch["name"] = "Ivan's casio watch"
 		myWathch["price"] = 599
 		myWathch["size"] = 12
