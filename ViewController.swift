@@ -33,17 +33,25 @@ class ViewController: UIViewController {
 		
 		showAnimation()
 		func parseCars() {
-			let source = try? String.init(contentsOfFile: "/Users/ivanvasilevich/Downloads/norms_2018-02-24.txt")
-			var element = source!.components(separatedBy: "\r\n").last!
-			for _ in 0..<4 {
-				element = element.replacingOccurrences(of: "  ", with: " ")
+			do {
+				let source = try String.init(contentsOfFile: "/Users/ivanvasilevich/Downloads/norms_2018-02-24.txt")
+				let ddd = try Data.init(contentsOf: URL(string: "")!)
+				ddd.count
+				var element = source.components(separatedBy: "\r\n").last!
+				for _ in 0..<4 {
+					element = element.replacingOccurrences(of: "  ", with: " ")
+				}
+				let elementsOfCar = element.components(separatedBy: " ")
+				let articul = elementsOfCar[1]
+				let position = elementsOfCar[2]
+				let name = elementsOfCar[3]
+				
+				print(name, articul, position)
 			}
-			let elementsOfCar = element.components(separatedBy: " ")
-			let articul = elementsOfCar[1]
-			let position = elementsOfCar[2]
-			let name = elementsOfCar[3]
+			catch {
+				print(error)
+			}
 			
-			print(name, articul, position)
 			//try
 			//documents dir
 		}
