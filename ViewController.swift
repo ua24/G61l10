@@ -34,10 +34,9 @@ class ViewController: UIViewController {
 		showAnimation()
 		func parseCars() {
 			do {
-				let source = try String.init(contentsOfFile: "/Users/ivanvasilevich/Downloads/norms_2018-02-24.txt")
-				let ddd = try Data.init(contentsOf: URL(string: "")!)
-				ddd.count
-				var element = source.components(separatedBy: "\r\n").last!
+				let path = Bundle.main.path(forResource: "norms_2018-02-24", ofType: "txt")!
+				let source = try String.init(contentsOfFile: path)
+				var element = source.components(separatedBy: "\r\n").first!
 				for _ in 0..<4 {
 					element = element.replacingOccurrences(of: "  ", with: " ")
 				}
